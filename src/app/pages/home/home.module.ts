@@ -12,10 +12,10 @@ import { ComponentsModule } from 'src/app/components/components.module';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
+    ComponentsModule,
+    FormsModule,
     HomePageRoutingModule,
-    ComponentsModule
   ],
   declarations: [HomePage]
 })

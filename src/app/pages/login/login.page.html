@@ -1,23 +1,38 @@
 <ion-content color="success">
   <div class="flex-center">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title color="success">Reciclica</ion-card-title>
-      </ion-card-header>
+    <form [formGroup]="loginForm">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="success">Reciclica</ion-card-title>
+        </ion-card-header>
 
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-button color="dark" fill="clear" size="full">Forget email/password</ion-button>
-        <ion-button color="success" size="full" (click)="login()">Login</ion-button>
-        <ion-button color="success" fill="clear" size="full" (click)="register()">Register</ion-button>
-      </ion-card-content>
-    </ion-card>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          <error-message [field]="loginForm.get('email')" error="email" message="Email is invalid"></error-message>
+          <error-message [field]="loginForm.get('email')" error="required" message="Email is mandatory"></error-message>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <error-message [field]="loginForm.get('password')" error="required" message="Password is mandatory">
+          </error-message>
+
+          <ion-button color="dark" fill="clear" size="full" [disabled]="loginForm.get('email').invalid"
+            (click)="forget()" id="recoverPasswordButton">
+            Forget email/password
+          </ion-button>
+          <ion-button color="success" size="full" [disabled]="loginForm.invalid" (click)="login()" id="loginButton">
+            Login
+          </ion-button>
+          <ion-button color="success" fill="clear" size="full" (click)="register()">
+            Register
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </form>
   </div>
 </ion-content>
